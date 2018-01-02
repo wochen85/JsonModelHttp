@@ -7,8 +7,9 @@
 //
 
 #import "HomeViewController.h"
-#import <AFNetworking/AFNetworking.h>
+#import "JsonModelHttp/JsonModelHttp.h"
 #import <SVProgressHUD/SVProgressHUD.h>
+#import "GetResModel.h"
 
 @interface HomeViewController ()
 @property(nonatomic,strong)NSArray<NSDictionary*>* fuckData;
@@ -22,17 +23,16 @@
     {
         _fuckData = @[@{@"GET":
                             ^{
-                                [SVProgressHUD show];
-                                AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
-                                [mgr GET:@"http://www.httpbin.org/get" parameters:@[@"aa",@"bb"] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                                [SVProgressHUD showWithStatus:@"客官请稍候"];
+                                [JsonModelHttp fire:@"GET" url:@"http://www.httpbin.org/get" param:@{@"param":@"hello"} headers:@{@"Myheader":@"world"} body:nil responseModelClass:[GetResModel class] success:^(GetResModel* model) {
                                     [SVProgressHUD dismiss];
-                                } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                                } failure:^(NSError *error) {
                                     [SVProgressHUD dismiss];
                                 }];
                             }},
                       @{@"POST":
                             ^{
-                                [SVProgressHUD show];
+                                [SVProgressHUD showWithStatus:@"客官请稍候"];
                                 AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
                                 [mgr POST:@"http://www.httpbin.org/post" parameters:@[@"aa",@"bb"] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                                     [SVProgressHUD dismiss];

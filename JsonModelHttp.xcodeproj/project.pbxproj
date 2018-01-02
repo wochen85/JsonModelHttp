@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B842D201FFBCCC30077CA93 /* GetResModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B842D1F1FFBCCC30077CA93 /* GetResModel.m */; };
 		6BF1393A1FFB654900F5A19F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF139391FFB654900F5A19F /* AppDelegate.m */; };
 		6BF139401FFB654900F5A19F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BF1393E1FFB654900F5A19F /* Main.storyboard */; };
 		6BF139421FFB654900F5A19F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6BF139411FFB654900F5A19F /* Assets.xcassets */; };
@@ -20,6 +21,8 @@
 /* Begin PBXFileReference section */
 		0932CA54B037EBD3E6CC07A2 /* Pods-JsonModelHttp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JsonModelHttp.release.xcconfig"; path = "Pods/Target Support Files/Pods-JsonModelHttp/Pods-JsonModelHttp.release.xcconfig"; sourceTree = "<group>"; };
 		361EEBDC0AA5018631785706 /* libPods-JsonModelHttp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JsonModelHttp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B842D1E1FFBCCC30077CA93 /* GetResModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetResModel.h; sourceTree = "<group>"; };
+		6B842D1F1FFBCCC30077CA93 /* GetResModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetResModel.m; sourceTree = "<group>"; };
 		6BF139351FFB654900F5A19F /* JsonModelHttp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JsonModelHttp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BF139381FFB654900F5A19F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		6BF139391FFB654900F5A19F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -86,6 +89,8 @@
 				6BF139471FFB654900F5A19F /* main.m */,
 				6BF139581FFB7AA000F5A19F /* HomeViewController.h */,
 				6BF139591FFB7AA000F5A19F /* HomeViewController.m */,
+				6B842D1E1FFBCCC30077CA93 /* GetResModel.h */,
+				6B842D1F1FFBCCC30077CA93 /* GetResModel.m */,
 			);
 			path = JsonModelHttp;
 			sourceTree = "<group>";
@@ -230,6 +235,7 @@
 				6BF139481FFB654900F5A19F /* main.m in Sources */,
 				6BF1393A1FFB654900F5A19F /* AppDelegate.m in Sources */,
 				6BF1395A1FFB7AA000F5A19F /* HomeViewController.m in Sources */,
+				6B842D201FFBCCC30077CA93 /* GetResModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,7 +309,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -352,7 +358,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
