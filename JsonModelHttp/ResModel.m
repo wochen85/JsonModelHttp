@@ -1,32 +1,27 @@
 //
-//  GetResModel.m
+//  ResModel.m
 //  JsonModelHttp
 //
-//  Created by chat on 2018/1/2.
+//  Created by chat on 2018/1/3.
 //  Copyright © 2018年 CHAT. All rights reserved.
 //
 
-#import "GetResModel.h"
+#import "ResModel.h"
 #import <MJExtension/MJExtension.h>
 
-@implementation Args
+@implementation Json
 
 @end
 
-@implementation Headers
-+(void) load
-{
-    [Headers mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
-        return @{@"AcceptEncoding":@"Accept-Encoding",
-                 @"ContentType":@"Content-Type",
-                 @"UserAgent":@"User-Agent",
-                 @"AcceptLanguage":@"Accept-Language",
-                 };
-    }];
-}
+@implementation Files
+
 @end
 
-@implementation GetResModel
+@implementation Form
+
+@end
+
+@implementation ResModel
 - (NSString *)description
 {
     NSDictionary* dic = self.mj_keyValues;

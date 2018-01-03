@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B4054CE1FFC6C5C0003E904 /* ReqModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4054CD1FFC6C5C0003E904 /* ReqModel.m */; };
+		6B4054D11FFC70400003E904 /* ResModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4054D01FFC70400003E904 /* ResModel.m */; };
 		6B842D201FFBCCC30077CA93 /* GetResModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B842D1F1FFBCCC30077CA93 /* GetResModel.m */; };
 		6BF1393A1FFB654900F5A19F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF139391FFB654900F5A19F /* AppDelegate.m */; };
 		6BF139401FFB654900F5A19F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BF1393E1FFB654900F5A19F /* Main.storyboard */; };
@@ -21,6 +23,10 @@
 /* Begin PBXFileReference section */
 		0932CA54B037EBD3E6CC07A2 /* Pods-JsonModelHttp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JsonModelHttp.release.xcconfig"; path = "Pods/Target Support Files/Pods-JsonModelHttp/Pods-JsonModelHttp.release.xcconfig"; sourceTree = "<group>"; };
 		361EEBDC0AA5018631785706 /* libPods-JsonModelHttp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-JsonModelHttp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B4054CC1FFC6C5C0003E904 /* ReqModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReqModel.h; sourceTree = "<group>"; };
+		6B4054CD1FFC6C5C0003E904 /* ReqModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReqModel.m; sourceTree = "<group>"; };
+		6B4054CF1FFC70400003E904 /* ResModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResModel.h; sourceTree = "<group>"; };
+		6B4054D01FFC70400003E904 /* ResModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResModel.m; sourceTree = "<group>"; };
 		6B842D1E1FFBCCC30077CA93 /* GetResModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetResModel.h; sourceTree = "<group>"; };
 		6B842D1F1FFBCCC30077CA93 /* GetResModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetResModel.m; sourceTree = "<group>"; };
 		6BF139351FFB654900F5A19F /* JsonModelHttp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JsonModelHttp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -91,6 +97,10 @@
 				6BF139591FFB7AA000F5A19F /* HomeViewController.m */,
 				6B842D1E1FFBCCC30077CA93 /* GetResModel.h */,
 				6B842D1F1FFBCCC30077CA93 /* GetResModel.m */,
+				6B4054CC1FFC6C5C0003E904 /* ReqModel.h */,
+				6B4054CD1FFC6C5C0003E904 /* ReqModel.m */,
+				6B4054CF1FFC70400003E904 /* ResModel.h */,
+				6B4054D01FFC70400003E904 /* ResModel.m */,
 			);
 			path = JsonModelHttp;
 			sourceTree = "<group>";
@@ -232,9 +242,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B4054D11FFC70400003E904 /* ResModel.m in Sources */,
 				6BF139481FFB654900F5A19F /* main.m in Sources */,
 				6BF1393A1FFB654900F5A19F /* AppDelegate.m in Sources */,
 				6BF1395A1FFB7AA000F5A19F /* HomeViewController.m in Sources */,
+				6B4054CE1FFC6C5C0003E904 /* ReqModel.m in Sources */,
 				6B842D201FFBCCC30077CA93 /* GetResModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

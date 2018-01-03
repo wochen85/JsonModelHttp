@@ -10,6 +10,8 @@
 #import "JsonModelHttp/JsonModelHttp.h"
 #import <SVProgressHUD/SVProgressHUD.h>
 #import "GetResModel.h"
+#import "ReqModel.h"
+#import "ResModel.h"
 
 @interface HomeViewController ()
 @property(nonatomic,strong)NSArray<NSDictionary*>* fuckData;
@@ -26,27 +28,69 @@
                                 [SVProgressHUD showWithStatus:@"客官请稍候"];
                                 [JsonModelHttp fire:@"GET" url:@"http://www.httpbin.org/get" param:@{@"param":@"hello"} headers:@{@"Myheader":@"world"} body:nil responseModelClass:[GetResModel class] success:^(GetResModel* model) {
                                     [SVProgressHUD dismiss];
+
+                                    UIAlertController* alc = [UIAlertController alertControllerWithTitle:@"成功" message:model.description preferredStyle:UIAlertControllerStyleAlert];
+                                    [alc addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+                                    [self presentViewController:alc animated:YES completion:nil];
                                 } failure:^(NSError *error) {
                                     [SVProgressHUD dismiss];
+                                    [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+                                    [SVProgressHUD dismissWithDelay:1.0];
                                 }];
                             }},
                       @{@"POST":
                             ^{
+                                ReqModel* reqModel = [ReqModel new];
+                                reqModel.firstName = @"Chen";
+                                reqModel.lastName = @"Haitao";
                                 [SVProgressHUD showWithStatus:@"客官请稍候"];
-                                AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
-                                [mgr POST:@"http://www.httpbin.org/post" parameters:@[@"aa",@"bb"] progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                                [JsonModelHttp fire:@"POST" url:@"http://www.httpbin.org/post" param:@{@"param":@"hello"} headers:@{@"Myheader":@"world"} body:reqModel responseModelClass:[ResModel class] success:^(ResModel* model) {
                                     [SVProgressHUD dismiss];
-                                } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+
+                                    UIAlertController* alc = [UIAlertController alertControllerWithTitle:@"成功" message:model.description preferredStyle:UIAlertControllerStyleAlert];
+                                    [alc addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+                                    [self presentViewController:alc animated:YES completion:nil];
+                                } failure:^(NSError *error) {
                                     [SVProgressHUD dismiss];
+                                    [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+                                    [SVProgressHUD dismissWithDelay:1.0];
                                 }];
                             }},
                       @{@"DELETE":
                             ^{
+                                ReqModel* reqModel = [ReqModel new];
+                                reqModel.firstName = @"Chen";
+                                reqModel.lastName = @"Haitao";
+                                [SVProgressHUD showWithStatus:@"客官请稍候"];
+                                [JsonModelHttp fire:@"DELETE" url:@"http://www.httpbin.org/delete" param:@{@"param":@"hello"} headers:@{@"Myheader":@"world"} body:reqModel responseModelClass:[ResModel class] success:^(ResModel* model) {
+                                    [SVProgressHUD dismiss];
 
+                                    UIAlertController* alc = [UIAlertController alertControllerWithTitle:@"成功" message:model.description preferredStyle:UIAlertControllerStyleAlert];
+                                    [alc addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+                                    [self presentViewController:alc animated:YES completion:nil];
+                                } failure:^(NSError *error) {
+                                    [SVProgressHUD dismiss];
+                                    [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+                                    [SVProgressHUD dismissWithDelay:1.0];
+                                }];
                             }},
                       @{@"PUT":
                             ^{
+                                ReqModel* reqModel = [ReqModel new];
+                                reqModel.firstName = @"Chen";
+                                reqModel.lastName = @"Haitao";
+                                [SVProgressHUD showWithStatus:@"客官请稍候"];
+                                [JsonModelHttp fire:@"PUT" url:@"http://www.httpbin.org/put" param:@{@"param":@"hello"} headers:@{@"Myheader":@"world"} body:reqModel responseModelClass:[ResModel class] success:^(ResModel* model) {
+                                    [SVProgressHUD dismiss];
 
+                                    UIAlertController* alc = [UIAlertController alertControllerWithTitle:@"成功" message:model.description preferredStyle:UIAlertControllerStyleAlert];
+                                    [alc addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+                                    [self presentViewController:alc animated:YES completion:nil];
+                                } failure:^(NSError *error) {
+                                    [SVProgressHUD dismiss];
+                                    [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+                                    [SVProgressHUD dismissWithDelay:1.0];
+                                }];
                             }}
                       ];
     }
@@ -55,7 +99,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.tableView.tableFooterView = [UIView new];
+//    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     

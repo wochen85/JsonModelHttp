@@ -15,8 +15,12 @@
 
 @interface Headers :NSObject
 @property (nonatomic , copy) NSString              * Accept;
+@property (nonatomic , copy) NSString              * AcceptEncoding;
 @property (nonatomic , copy) NSString              * Connection;
+@property (nonatomic , copy) NSString              * ContentType;
 @property (nonatomic , copy) NSString              * Host;
+@property (nonatomic , copy) NSString              * UserAgent;
+@property (nonatomic , copy) NSString              * AcceptLanguage;
 @property (nonatomic , copy) NSString              * Myheader;
 
 @end
