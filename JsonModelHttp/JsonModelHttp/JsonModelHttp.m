@@ -264,7 +264,7 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
     {
         [mgr.requestSerializer setValue:headValue[key] forHTTPHeaderField:key];
     }
-    NSDictionary *params = @{HTTP_PARAM : param?:@"",
+    NSDictionary *params = @{HTTP_PARAM : param?:@{},
                              HTTP_BODY : bodyModel?:@""};
 
     void (^okBlk)(NSURLSessionDataTask * _Nonnull, id _Nullable) = ^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {

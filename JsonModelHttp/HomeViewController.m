@@ -44,7 +44,7 @@
                                 reqModel.firstName = @"Chen";
                                 reqModel.lastName = @"Haitao";
                                 [SVProgressHUD showWithStatus:@"客官请稍候"];
-                                [JsonModelHttp fire:@"POST" url:@"http://www.httpbin.org/post" param:@{@"param":@"hello"} headers:@{@"Myheader":@"world"} body:reqModel responseModelClass:[ResModel class] success:^(ResModel* model) {
+                                [JsonModelHttp fire:@"POST" url:@"http://www.httpbin.org/post" param:nil headers:@{@"Myheader":@"world"} body:reqModel responseModelClass:[ResModel class] success:^(ResModel* model) {
                                     [SVProgressHUD dismiss];
 
                                     UIAlertController* alc = [UIAlertController alertControllerWithTitle:@"成功" message:model.description preferredStyle:UIAlertControllerStyleAlert];
