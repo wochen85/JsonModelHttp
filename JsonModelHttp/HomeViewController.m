@@ -91,6 +91,24 @@
                                     [SVProgressHUD showErrorWithStatus:error.localizedDescription];
                                     [SVProgressHUD dismissWithDelay:1.0];
                                 }];
+                            }},
+                      @{@"PATCH":
+                            ^{
+                                ReqModel* reqModel = [ReqModel new];
+                                reqModel.firstName = @"Chen";
+                                reqModel.lastName = @"Haitao";
+                                [SVProgressHUD showWithStatus:@"客官请稍候"];
+                                [JsonModelHttp fire:@"PATCH" url:@"http://www.httpbin.org/patch" param:@{@"param":@"hello"} headers:@{@"Myheader":@"world"} body:reqModel responseModelClass:[ResModel class] success:^(ResModel* model) {
+                                    [SVProgressHUD dismiss];
+
+                                    UIAlertController* alc = [UIAlertController alertControllerWithTitle:@"成功" message:model.description preferredStyle:UIAlertControllerStyleAlert];
+                                    [alc addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+                                    [self presentViewController:alc animated:YES completion:nil];
+                                } failure:^(NSError *error) {
+                                    [SVProgressHUD dismiss];
+                                    [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+                                    [SVProgressHUD dismissWithDelay:1.0];
+                                }];
                             }}
                       ];
     }
@@ -101,7 +119,7 @@
     [super viewDidLoad];
     self.tableView.tableFooterView = [UIView new];
 //    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
-    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeGradient];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     

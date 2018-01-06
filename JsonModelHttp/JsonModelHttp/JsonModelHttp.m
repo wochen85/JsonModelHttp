@@ -311,6 +311,10 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
     {
         [mgr PUT:url parameters:params success:okBlk failure:notOkBlk];
     }
+    else if ([method isEqualToString:@"PATCH"])
+    {
+        [mgr PATCH:url parameters:params success:okBlk failure:notOkBlk];
+    }
 }
 
 @end
