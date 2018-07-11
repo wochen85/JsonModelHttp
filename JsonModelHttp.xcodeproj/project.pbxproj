@@ -124,7 +124,6 @@
 				6BF139311FFB654900F5A19F /* Sources */,
 				6BF139321FFB654900F5A19F /* Frameworks */,
 				6BF139331FFB654900F5A19F /* Resources */,
-				518D2205A232D0AE841A1A7A /* [CP] Embed Pods Frameworks */,
 				AF7CB135B423180DC74C41ED /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -184,21 +183,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		518D2205A232D0AE841A1A7A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-JsonModelHttp/Pods-JsonModelHttp-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		6E060A1F3C55D40E64521542 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -228,7 +212,7 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

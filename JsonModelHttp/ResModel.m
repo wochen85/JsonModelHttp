@@ -7,7 +7,7 @@
 //
 
 #import "ResModel.h"
-#import <MJExtension/MJExtension.h>
+#import <YYModel/YYModel.h>
 
 @implementation Json
 
@@ -24,7 +24,7 @@
 @implementation ResModel
 - (NSString *)description
 {
-    NSDictionary* dic = self.mj_keyValues;
+    NSDictionary* dic = [self yy_modelToJSONObject];
     NSData* data = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:nil];
     NSString* str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     str = [str stringByReplacingOccurrencesOfString:@"\\/" withString:@"/"];

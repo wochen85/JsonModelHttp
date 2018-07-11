@@ -7,7 +7,7 @@
 //
 
 #import "JsonModelHttp.h"
-#import <MJExtension/MJExtension.h>
+#import <YYModel/YYModel.h>
 
 #define HTTP_PARAM     @"param"
 #define HTTP_BODY      @"body"
@@ -104,7 +104,7 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
         NSData* realBody = nil;
         if (![bodyModel isKindOfClass:[NSString class]])
         {
-            NSMutableDictionary* bodyDic = bodyModel.mj_keyValues;
+            NSMutableDictionary* bodyDic = [bodyModel yy_modelToJSONObject];
             if (bodyDic && [bodyDic isKindOfClass:[NSMutableDictionary class]] && bodyDic.allKeys.count)
             {
                 realBody = [NSJSONSerialization dataWithJSONObject:bodyDic options:NSJSONWritingPrettyPrinted error:error];
@@ -273,7 +273,7 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
             NSDictionary* responseDic = (NSDictionary*) responseObject;
             if (modelClass && [responseDic isKindOfClass:[NSDictionary class]])
             {
-                id model = [modelClass mj_objectWithKeyValues:responseDic];
+                id model = [modelClass yy_modelWithJSON:responseDic];
                 successBlk(model);
             }
             else

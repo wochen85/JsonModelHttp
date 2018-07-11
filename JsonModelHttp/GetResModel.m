@@ -7,29 +7,29 @@
 //
 
 #import "GetResModel.h"
-#import <MJExtension/MJExtension.h>
+#import <YYModel/YYModel.h>
 
 @implementation Args
 
 @end
 
 @implementation Headers
-+(void) load
+
++ (NSDictionary *)modelCustomPropertyMapper
 {
-    [Headers mj_setupReplacedKeyFromPropertyName:^NSDictionary *{
-        return @{@"AcceptEncoding":@"Accept-Encoding",
-                 @"ContentType":@"Content-Type",
-                 @"UserAgent":@"User-Agent",
-                 @"AcceptLanguage":@"Accept-Language",
-                 };
-    }];
+    return @{@"AcceptEncoding":@"Accept-Encoding",
+             @"ContentType":@"Content-Type",
+             @"UserAgent":@"User-Agent",
+             @"AcceptLanguage":@"Accept-Language",
+             };
 }
+
 @end
 
 @implementation GetResModel
 - (NSString *)description
 {
-    NSDictionary* dic = self.mj_keyValues;
+    NSDictionary* dic = [self yy_modelToJSONObject];
     NSData* data = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:nil];
     NSString* str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     str = [str stringByReplacingOccurrencesOfString:@"\\/" withString:@"/"];
