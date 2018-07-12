@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'JsonModelHttp'
-  s.version          = '0.0.5'
+  s.version          = '0.0.6'
   s.summary          = '整合简化Http+Json的网络调用'
   s.homepage         = 'https://github.com/wochen85/JsonModelHttp'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
@@ -9,7 +9,6 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '8.0'
   s.requires_arc = true
 
-  s.dependency 'MJExtension'
   s.dependency 'AFNetworking'
   s.dependency 'YYModel'
 
