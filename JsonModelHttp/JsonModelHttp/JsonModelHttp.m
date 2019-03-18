@@ -257,7 +257,11 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
 
 +(void) fire:(NSString*) method url:(NSString*) url param:(NSDictionary*)param headers:(NSDictionary*)headValue body:(id<NSObject>) bodyModel responseModelClass:(Class)modelClass success:(void(^)(id model)) successBlk failure:(void(^)(NSError * error)) falilueBlk
 {
-    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
+    static AFHTTPSessionManager *mgr;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        mgr = [AFHTTPSessionManager manager];
+    });
     mgr.requestSerializer = [CHTJsonRequestSerializer serializer];
     mgr.responseSerializer = [CHTJsonResponseSerializer serializer];
     for (NSString* key in headValue)
