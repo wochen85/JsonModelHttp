@@ -25,7 +25,7 @@
     {
         _fuckData = @[@{@"GET":
                             ^{
-                                [SVProgressHUD showWithStatus:@"客官请稍候"];
+                                [SVProgressHUD showWithStatus:@"请稍候..."];
                                 [JsonModelHttp fire:@"GET" url:@"http://www.httpbin.org/get" param:@{@"param":@"hello"} headers:@{@"Myheader":@"world"} body:nil responseModelClass:[GetResModel class] success:^(GetResModel* model) {
                                     [SVProgressHUD dismiss];
 
@@ -43,7 +43,7 @@
                                 ReqModel* reqModel = [ReqModel new];
                                 reqModel.firstName = @"Chen";
                                 reqModel.lastName = @"Haitao";
-                                [SVProgressHUD showWithStatus:@"客官请稍候"];
+                                [SVProgressHUD showWithStatus:@"请稍候..."];
                                 [JsonModelHttp fire:@"POST" url:@"http://www.httpbin.org/post" param:nil headers:@{@"Myheader":@"world"} body:reqModel responseModelClass:[ResModel class] success:^(ResModel* model) {
                                     [SVProgressHUD dismiss];
 
@@ -61,7 +61,7 @@
                                 ReqModel* reqModel = [ReqModel new];
                                 reqModel.firstName = @"Chen";
                                 reqModel.lastName = @"Haitao";
-                                [SVProgressHUD showWithStatus:@"客官请稍候"];
+                                [SVProgressHUD showWithStatus:@"请稍候..."];
                                 [JsonModelHttp fire:@"DELETE" url:@"http://www.httpbin.org/delete" param:@{@"param":@"hello"} headers:@{@"Myheader":@"world"} body:reqModel responseModelClass:[ResModel class] success:^(ResModel* model) {
                                     [SVProgressHUD dismiss];
 
@@ -79,7 +79,7 @@
                                 ReqModel* reqModel = [ReqModel new];
                                 reqModel.firstName = @"Chen";
                                 reqModel.lastName = @"Haitao";
-                                [SVProgressHUD showWithStatus:@"客官请稍候"];
+                                [SVProgressHUD showWithStatus:@"请稍候..."];
                                 [JsonModelHttp fire:@"PUT" url:@"http://www.httpbin.org/put" param:@{@"param":@"hello"} headers:@{@"Myheader":@"world"} body:reqModel responseModelClass:[ResModel class] success:^(ResModel* model) {
                                     [SVProgressHUD dismiss];
 
@@ -97,7 +97,7 @@
                                 ReqModel* reqModel = [ReqModel new];
                                 reqModel.firstName = @"Chen";
                                 reqModel.lastName = @"Haitao";
-                                [SVProgressHUD showWithStatus:@"客官请稍候"];
+                                [SVProgressHUD showWithStatus:@"请稍候..."];
                                 [JsonModelHttp fire:@"PATCH" url:@"http://www.httpbin.org/patch" param:@{@"param":@"hello"} headers:@{@"Myheader":@"world"} body:reqModel responseModelClass:[ResModel class] success:^(ResModel* model) {
                                     [SVProgressHUD dismiss];
 
@@ -118,8 +118,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.tableView.tableFooterView = [UIView new];
-//    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
-    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeGradient];
+    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
+//    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeGradient];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     

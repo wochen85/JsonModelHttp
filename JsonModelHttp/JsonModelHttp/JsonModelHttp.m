@@ -71,8 +71,15 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
 
 + (instancetype)serializerWithWritingOptions:(NSJSONWritingOptions)writingOptions
 {
-    CHTJsonRequestSerializer *serializer = [[self alloc] init];
-    serializer.writingOptions = writingOptions;
+    static CHTJsonRequestSerializer *serializer;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        serializer = [[self alloc] init];
+        serializer.writingOptions = writingOptions;
+        [serializer willChangeValueForKey:@"timeoutInterval"];
+        serializer.timeoutInterval = 15;
+        [serializer didChangeValueForKey:@"timeoutInterval"];
+    });
 
     return serializer;
 }
@@ -165,8 +172,13 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
 }
 
 + (instancetype)serializerWithReadingOptions:(NSJSONReadingOptions)readingOptions {
-    CHTJsonResponseSerializer *serializer = [[self alloc] init];
-    serializer.readingOptions = readingOptions;
+    static CHTJsonResponseSerializer *serializer;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        serializer = [[self alloc] init];
+        serializer.readingOptions = readingOptions;
+        serializer.removesKeysWithNullValues = YES;
+    });
 
     return serializer;
 }
