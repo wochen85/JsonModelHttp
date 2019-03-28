@@ -17,14 +17,14 @@ static NSError * AFErrorWithUnderlyingError(NSError *error, NSError *underlyingE
     if (!error) {
         return underlyingError;
     }
-
+    
     if (!underlyingError || error.userInfo[NSUnderlyingErrorKey]) {
         return error;
     }
-
+    
     NSMutableDictionary *mutableUserInfo = [error.userInfo mutableCopy];
     mutableUserInfo[NSUnderlyingErrorKey] = underlyingError;
-
+    
     return [[NSError alloc] initWithDomain:error.domain code:error.code userInfo:mutableUserInfo];
 }
 
@@ -34,7 +34,7 @@ static BOOL AFErrorOrUnderlyingErrorHasCodeInDomain(NSError *error, NSInteger co
     } else if (error.userInfo[NSUnderlyingErrorKey]) {
         return AFErrorOrUnderlyingErrorHasCodeInDomain(error.userInfo[NSUnderlyingErrorKey], code, domain);
     }
-
+    
     return NO;
 }
 
@@ -44,7 +44,7 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
         for (id value in (NSArray *)JSONObject) {
             [mutableArray addObject:AFJSONObjectByRemovingKeysWithNullValues(value, readingOptions)];
         }
-
+        
         return (readingOptions & NSJSONReadingMutableContainers) ? mutableArray : [NSArray arrayWithArray:mutableArray];
     } else if ([JSONObject isKindOfClass:[NSDictionary class]]) {
         NSMutableDictionary *mutableDictionary = [NSMutableDictionary dictionaryWithDictionary:JSONObject];
@@ -56,10 +56,10 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
                 mutableDictionary[key] = AFJSONObjectByRemovingKeysWithNullValues(value, readingOptions);
             }
         }
-
+        
         return (readingOptions & NSJSONReadingMutableContainers) ? mutableDictionary : [NSDictionary dictionaryWithDictionary:mutableDictionary];
     }
-
+    
     return JSONObject;
 }
 
@@ -80,7 +80,7 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
         serializer.timeoutInterval = 15;
         [serializer didChangeValueForKey:@"timeoutInterval"];
     });
-
+    
     return serializer;
 }
 
@@ -92,32 +92,32 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
 {
     NSParameterAssert(request);
     NSParameterAssert([parameters isKindOfClass:[NSDictionary class]]);
-
+    
     NSMutableURLRequest *mutableRequest = [request mutableCopy];
-
+    
     [self.HTTPRequestHeaders enumerateKeysAndObjectsUsingBlock:^(id field, id value, BOOL * __unused stop) {
         if (![request valueForHTTPHeaderField:field]) {
             [mutableRequest setValue:value forHTTPHeaderField:field];
         }
     }];
     [mutableRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-
+    
     if (parameters) {
-
+        
         NSDictionary* paraDic = (NSDictionary*) parameters;
         NSDictionary* realPara = paraDic[HTTP_PARAM];
         NSObject* bodyModel = paraDic[HTTP_BODY];
-
+        
         NSData* realBody = nil;
         if (![bodyModel isKindOfClass:[NSString class]])
         {
             NSMutableDictionary* bodyDic = [bodyModel yy_modelToJSONObject];
-            if (bodyDic && [bodyDic isKindOfClass:[NSMutableDictionary class]] && bodyDic.allKeys.count)
+            if (bodyDic && [bodyDic isKindOfClass:[NSDictionary class]] && bodyDic.allKeys.count)
             {
                 realBody = [NSJSONSerialization dataWithJSONObject:bodyDic options:NSJSONWritingPrettyPrinted error:error];
             }
         }
-
+        
         NSString* query = AFQueryStringFromParameters(realPara);
         if (query && query.length > 0) {
             NSURL* tmp = mutableRequest.URL;
@@ -125,13 +125,13 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
             tmp = mutableRequest.URL;
             NSLog(@"");
         }
-
+        
         if (realBody)
         {
             [mutableRequest setHTTPBody:realBody];
         }
     }
-
+    
     return mutableRequest;
 }
 
@@ -142,15 +142,15 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
     if (!self) {
         return nil;
     }
-
+    
     self.writingOptions = [[decoder decodeObjectOfClass:[NSNumber class] forKey:NSStringFromSelector(@selector(writingOptions))] unsignedIntegerValue];
-
+    
     return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
-
+    
     [coder encodeInteger:self.writingOptions forKey:NSStringFromSelector(@selector(writingOptions))];
 }
 
@@ -159,7 +159,7 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
 - (instancetype)copyWithZone:(NSZone *)zone {
     CHTJsonRequestSerializer *serializer = [super copyWithZone:zone];
     serializer.writingOptions = self.writingOptions;
-
+    
     return serializer;
 }
 
@@ -179,7 +179,7 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
         serializer.readingOptions = readingOptions;
         serializer.removesKeysWithNullValues = YES;
     });
-
+    
     return serializer;
 }
 
@@ -188,9 +188,9 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
     if (!self) {
         return nil;
     }
-
+    
     self.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", nil];
-
+    
     return self;
 }
 
@@ -207,7 +207,7 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
             return nil;
         }
     }
-
+    
     id responseObject = nil;
     NSError *serializationError = nil;
     BOOL isSpace = [data isEqualToData:[NSData dataWithBytes:" " length:1]];
@@ -219,16 +219,16 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
     {
         return nil;
     }
-
+    
     if (self.removesKeysWithNullValues && responseObject) {
         responseObject = AFJSONObjectByRemovingKeysWithNullValues(responseObject, self.readingOptions);
     }
-
+    
     if (error)
     {
         *error = AFErrorWithUnderlyingError(serializationError, *error);
     }
-
+    
     return responseObject;
 }
 
@@ -239,16 +239,16 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
     if (!self) {
         return nil;
     }
-
+    
     self.readingOptions = [[decoder decodeObjectOfClass:[NSNumber class] forKey:NSStringFromSelector(@selector(readingOptions))] unsignedIntegerValue];
     self.removesKeysWithNullValues = [[decoder decodeObjectOfClass:[NSNumber class] forKey:NSStringFromSelector(@selector(removesKeysWithNullValues))] boolValue];
-
+    
     return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder {
     [super encodeWithCoder:coder];
-
+    
     [coder encodeObject:@(self.readingOptions) forKey:NSStringFromSelector(@selector(readingOptions))];
     [coder encodeObject:@(self.removesKeysWithNullValues) forKey:NSStringFromSelector(@selector(removesKeysWithNullValues))];
 }
@@ -259,7 +259,7 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
     CHTJsonResponseSerializer *serializer = [[[self class] allocWithZone:zone] init];
     serializer.readingOptions = self.readingOptions;
     serializer.removesKeysWithNullValues = self.removesKeysWithNullValues;
-
+    
     return serializer;
 }
 
@@ -282,7 +282,7 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
     }
     NSDictionary *params = @{HTTP_PARAM : param?:@{},
                              HTTP_BODY : bodyModel?:@""};
-
+    
     void (^okBlk)(NSURLSessionDataTask * _Nonnull, id _Nullable) = ^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (successBlk)
         {
@@ -298,25 +298,25 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
             }
         }
     };
-
+    
     void (^notOkBlk)(NSURLSessionDataTask * _Nullable, NSError * _Nonnull) = ^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (falilueBlk)
         {
             falilueBlk(error);
         }
     };
-
+    
     method = method.uppercaseString;
     if ([method isEqualToString:@"GET"])
     {
         [mgr GET:url parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
-
+            
         } success:okBlk failure:notOkBlk];
     }
     else if([method isEqualToString:@"POST"])
     {
         [mgr POST:url parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
-
+            
         } success:okBlk failure:notOkBlk];
     }
     else if ([method isEqualToString:@"DELETE"])
