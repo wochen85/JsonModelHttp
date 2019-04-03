@@ -106,24 +106,28 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
         
         NSDictionary* paraDic = (NSDictionary*) parameters;
         NSDictionary* realPara = paraDic[HTTP_PARAM];
-        NSObject* bodyModel = paraDic[HTTP_BODY];
+        NSDictionary* bodyDic = paraDic[HTTP_BODY];
         
         NSData* realBody = nil;
-        if (![bodyModel isKindOfClass:[NSString class]])
+        if (![bodyDic isKindOfClass:[NSString class]])
         {
-            NSMutableDictionary* bodyDic = [bodyModel yy_modelToJSONObject];
-            if (bodyDic && [bodyDic isKindOfClass:[NSDictionary class]] && bodyDic.allKeys.count)
+            if (![bodyDic isKindOfClass: [NSDictionary class]])
+            {
+                bodyDic = [bodyDic yy_modelToJSONObject];
+            }
+            
+            if (bodyDic)
             {
                 realBody = [NSJSONSerialization dataWithJSONObject:bodyDic options:NSJSONWritingPrettyPrinted error:error];
+                NSString* tmpStr = [[NSString alloc] initWithData:realBody encoding:NSUTF8StringEncoding];
+                tmpStr = [tmpStr stringByReplacingOccurrencesOfString:@"\\/" withString:@"/"];
+                realBody = [tmpStr dataUsingEncoding:NSUTF8StringEncoding];
             }
         }
         
         NSString* query = AFQueryStringFromParameters(realPara);
         if (query && query.length > 0) {
-            NSURL* tmp = mutableRequest.URL;
             mutableRequest.URL = [NSURL URLWithString:[[mutableRequest.URL absoluteString] stringByAppendingFormat:mutableRequest.URL.query ? @"&%@" : @"?%@", query]];
-            tmp = mutableRequest.URL;
-            NSLog(@"");
         }
         
         if (realBody)
