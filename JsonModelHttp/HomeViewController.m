@@ -12,6 +12,7 @@
 #import "GetResModel.h"
 #import "ReqModel.h"
 #import "ResModel.h"
+#import "MockResModel.h"
 
 @interface HomeViewController ()
 @property(nonatomic,strong)NSArray<NSDictionary*>* fuckData;
@@ -101,6 +102,23 @@
                                 [JsonModelHttp fire:@"PATCH" url:@"http://www.httpbin.org/patch" param:@{@"param":@"hello"} headers:@{@"Myheader":@"world"} body:reqModel responseModelClass:[ResModel class] success:^(ResModel* model) {
                                     [SVProgressHUD dismiss];
 
+                                    UIAlertController* alc = [UIAlertController alertControllerWithTitle:@"成功" message:model.description preferredStyle:UIAlertControllerStyleAlert];
+                                    [alc addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
+                                    [self presentViewController:alc animated:YES completion:nil];
+                                } failure:^(NSError *error) {
+                                    [SVProgressHUD dismiss];
+                                    [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+                                    [SVProgressHUD dismissWithDelay:1.0];
+                                }];
+                            }},
+                      @{@"GET with mock data":
+                            ^{
+                                [SVProgressHUD showWithStatus:@"请稍候..."];
+                                NSString* filePath = [[NSBundle mainBundle] pathForResource:@"employee" ofType:@"json"];
+                                NSData* mockData = [NSData dataWithContentsOfURL:[NSURL fileURLWithPath:filePath]];
+                                [JsonModelHttp fireWithMockData:mockData method:@"GET" url:@"http://www.httpbin.org/patch" param:@{@"param":@"hello"} headers:@{@"Myheader":@"world"} body:nil responseModelClass:[MockResModel class] success:^(MockResModel* model) {
+                                    [SVProgressHUD dismiss];
+                                    
                                     UIAlertController* alc = [UIAlertController alertControllerWithTitle:@"成功" message:model.description preferredStyle:UIAlertControllerStyleAlert];
                                     [alc addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil]];
                                     [self presentViewController:alc animated:YES completion:nil];

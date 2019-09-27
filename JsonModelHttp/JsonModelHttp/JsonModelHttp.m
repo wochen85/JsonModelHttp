@@ -273,6 +273,28 @@ static id AFJSONObjectByRemovingKeysWithNullValues(id JSONObject, NSJSONReadingO
 
 +(void) fire:(NSString*) method url:(NSString*) url param:(NSDictionary*)param headers:(NSDictionary*)headValue body:(id<NSObject>) bodyModel responseModelClass:(Class)modelClass success:(void(^)(id model)) successBlk failure:(void(^)(NSError * error)) failureBlk
 {
+    [self fireWithMockData:nil method:method url:url param:param headers:headValue body:bodyModel responseModelClass:modelClass success:successBlk failure:failureBlk];
+}
+
++(void) fireWithMockData:(NSData*)mockData method:(NSString*) method url:(NSString*) url param:(NSDictionary*)param headers:(NSDictionary*)headValue body:(id<NSObject>) bodyModel responseModelClass:(Class)modelClass success:(void(^)(id model)) successBlk failure:(void(^)(NSError * error)) failureBlk
+{
+    if (mockData){
+        NSError* err = nil;
+        id responseModel = [NSJSONSerialization JSONObjectWithData:mockData options:NSJSONReadingMutableContainers error:&err];
+        if (err)
+        {
+            !failureBlk?:failureBlk(err);
+        }
+        else
+        {
+            if (modelClass && [responseModel isKindOfClass:[NSDictionary class]])
+            {
+                responseModel = [modelClass yy_modelWithJSON:responseModel];
+            }
+            !successBlk?:successBlk(responseModel);
+        }
+        return;
+    }
     static AFHTTPSessionManager *mgr;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{

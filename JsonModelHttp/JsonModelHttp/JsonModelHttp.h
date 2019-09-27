@@ -50,6 +50,7 @@
 
 @interface JsonModelHttp : NSObject
 +(void) fire:(NSString*) method url:(NSString*) url param:(NSDictionary*)param headers:(NSDictionary*)headValue body:(id<NSObject>) bodyModel responseModelClass:(Class)modelClass success:(void(^)(id model)) successBlk failure:(void(^)(NSError * error)) failureBlk;
++(void) fireWithMockData:(NSData*)mockData method:(NSString*) method url:(NSString*) url param:(NSDictionary*)param headers:(NSDictionary*)headValue body:(id<NSObject>) bodyModel responseModelClass:(Class)modelClass success:(void(^)(id model)) successBlk failure:(void(^)(NSError * error)) failureBlk;
 @end
 
 

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		6B4054CE1FFC6C5C0003E904 /* ReqModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4054CD1FFC6C5C0003E904 /* ReqModel.m */; };
 		6B4054D11FFC70400003E904 /* ResModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B4054D01FFC70400003E904 /* ResModel.m */; };
+		6B418316233DDE6900A7ACCD /* employee.json in Resources */ = {isa = PBXBuildFile; fileRef = 6B418315233DDE6900A7ACCD /* employee.json */; };
+		6B418319233DDEBC00A7ACCD /* MockResModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B418318233DDEBC00A7ACCD /* MockResModel.m */; };
 		6B842D201FFBCCC30077CA93 /* GetResModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B842D1F1FFBCCC30077CA93 /* GetResModel.m */; };
 		6BF1393A1FFB654900F5A19F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF139391FFB654900F5A19F /* AppDelegate.m */; };
 		6BF139401FFB654900F5A19F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6BF1393E1FFB654900F5A19F /* Main.storyboard */; };
@@ -27,6 +29,9 @@
 		6B4054CD1FFC6C5C0003E904 /* ReqModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReqModel.m; sourceTree = "<group>"; };
 		6B4054CF1FFC70400003E904 /* ResModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResModel.h; sourceTree = "<group>"; };
 		6B4054D01FFC70400003E904 /* ResModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResModel.m; sourceTree = "<group>"; };
+		6B418315233DDE6900A7ACCD /* employee.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = employee.json; sourceTree = "<group>"; };
+		6B418317233DDEBC00A7ACCD /* MockResModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MockResModel.h; sourceTree = "<group>"; };
+		6B418318233DDEBC00A7ACCD /* MockResModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MockResModel.m; sourceTree = "<group>"; };
 		6B842D1E1FFBCCC30077CA93 /* GetResModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetResModel.h; sourceTree = "<group>"; };
 		6B842D1F1FFBCCC30077CA93 /* GetResModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetResModel.m; sourceTree = "<group>"; };
 		6BF139351FFB654900F5A19F /* JsonModelHttp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JsonModelHttp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,10 +69,20 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		6B418314233DDE6900A7ACCD /* MockData */ = {
+			isa = PBXGroup;
+			children = (
+				6B418315233DDE6900A7ACCD /* employee.json */,
+			);
+			name = MockData;
+			path = JsonModelHttp/MockData;
+			sourceTree = "<group>";
+		};
 		6BF1392C1FFB654900F5A19F = {
 			isa = PBXGroup;
 			children = (
 				6BF1394E1FFB66F800F5A19F /* JsonModelHttp.podspec */,
+				6B418314233DDE6900A7ACCD /* MockData */,
 				6BF139371FFB654900F5A19F /* JsonModelHttp */,
 				6BF139361FFB654900F5A19F /* Products */,
 				5E98C9BA9495F9AA089120F3 /* Pods */,
@@ -101,6 +116,8 @@
 				6B4054CD1FFC6C5C0003E904 /* ReqModel.m */,
 				6B4054CF1FFC70400003E904 /* ResModel.h */,
 				6B4054D01FFC70400003E904 /* ResModel.m */,
+				6B418317233DDEBC00A7ACCD /* MockResModel.h */,
+				6B418318233DDEBC00A7ACCD /* MockResModel.m */,
 			);
 			path = JsonModelHttp;
 			sourceTree = "<group>";
@@ -177,6 +194,7 @@
 				6BF1394F1FFB66F800F5A19F /* JsonModelHttp.podspec in Resources */,
 				6BF139421FFB654900F5A19F /* Assets.xcassets in Resources */,
 				6BF139401FFB654900F5A19F /* Main.storyboard in Resources */,
+				6B418316233DDE6900A7ACCD /* employee.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,6 +244,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B418319233DDEBC00A7ACCD /* MockResModel.m in Sources */,
 				6B4054D11FFC70400003E904 /* ResModel.m in Sources */,
 				6BF139481FFB654900F5A19F /* main.m in Sources */,
 				6BF1393A1FFB654900F5A19F /* AppDelegate.m in Sources */,
